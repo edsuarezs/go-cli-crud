@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-
 )
 
 // Definición de la estructura Task que representa una tarea
@@ -40,27 +39,6 @@ func AddTask(tasks []Task, name string) []Task {
 		Complete: false,
 	}
 	return append(tasks, newTask)
-}
-
-// Función para eliminar una tarea por su ID
-func DeleteTask(tasks []Task, id int) []Task {
-	for i, task := range tasks {
-		if task.ID == id {
-			return append(tasks[:i], tasks[i+1:]...)
-		}
-	}
-	return tasks
-}
-
-// Función para marcar una tarea como completa o incompleta
-func CompleteTask(tasks []Task, id int) []Task {
-	for i, task := range tasks {
-		if task.ID == id {
-			tasks[i].Complete = !task.Complete
-			break
-		}
-	}
-	return tasks
 }
 
 // Función para guardar las tareas en un archivo
@@ -100,4 +78,25 @@ func GetNextID(tasks []Task) int {
 		return 1
 	}
 	return tasks[len(tasks)-1].ID + 1
+}
+
+// Función para eliminar una tarea por su ID
+func DeleteTask(tasks []Task, id int) []Task {
+	for i, task := range tasks {
+		if task.ID == id {
+			return append(tasks[:i], tasks[i+1:]...)
+		}
+	}
+	return tasks
+}
+
+// Función para marcar una tarea como completa o incompleta
+func CompleteTask(tasks []Task, id int) []Task {
+	for i, task := range tasks {
+		if task.ID == id {
+			tasks[i].Complete = !task.Complete
+			break
+		}
+	}
+	return tasks
 }
